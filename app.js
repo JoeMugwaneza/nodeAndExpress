@@ -1,8 +1,4 @@
-const john = "John";
-const peter = "Peter";
 
-const sayHi = (name) =>{
-    console.log(`Welcome Ms./Mr. ${name}, ${john}, and ${peter}`);
-}
+const sayHi = require('./utils');
 
 sayHi('Susan');
