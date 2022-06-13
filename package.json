@@ -4,8 +4,8 @@
   "description": "This is the place for practicing Nodejs and ExpressJs",
   "main": "10-fs-async.js",
   "scripts": {
-    "start": "node 11-http.js",
-    "dev": "nodemon 11-http.js"
+    "start": "app.js",
+    "dev": "nodemon app.js"
   },
   "repository": {
     "type": "git",

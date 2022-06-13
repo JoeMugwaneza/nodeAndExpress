@@ -1,4 +1,5 @@
 
+const {readFile} = require('fs');
 const sayHi = require('./utils.js');
 
 sayHi('Susan');
@@ -8,15 +9,19 @@ const data = require('./4-alternative.js');
 
 require('./5-non-invoked');
 
-const {readFile} = require('fs');
-console.log('started a first task');
-readFile('./content/first.txt', 'utf-8',(err, result) =>{
-    if(err){
-        console.log(err)
-        return
-    }
-    console.log(result);
-    console.log('completed first task');
-})
-console.log('starting next task');
 
+const getText = (path) =>{
+    return new Promise((resolve,reject)=>{
+        readFile(path, 'utf-8',(err, data) =>{
+            if(err){
+                reject(err)
+            } else{
+                resolve(data)
+            }
+        })
+
+    })
+}
+getText('./content/first.txt')
+.then(result => console.log(result))
+.catch(err => console.log(err))
