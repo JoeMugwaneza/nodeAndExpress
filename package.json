@@ -2,7 +2,7 @@
   "name": "nodeandexpress",
   "version": "1.0.0",
   "description": "This is the place for practicing Nodejs and ExpressJs",
-  "main": "10-fs-async.js",
+  "main": "app.js",
   "scripts": {
     "start": "app.js",
     "dev": "nodemon app.js"
