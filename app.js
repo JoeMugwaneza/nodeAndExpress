@@ -3,10 +3,10 @@ const http = require('http');
 
 const {readFileSync} = require('fs'); 
 
-const homePage = readFileSync('./express/index.html');
-const homeStyles = readFileSync('./express/styles.css');
-const homeLogo = readFileSync('./express/logo.svg');
-const homeLogic = readFileSync('./express/browser-app.js');
+const homePage = readFileSync('./nav-app/index.html');
+const homeStyles = readFileSync('./nav-app/styles.css');
+const homeLogo = readFileSync('./nav-app/logo.svg');
+const homeLogic = readFileSync('./nav-app/browser-app.js');
 
 const server = http.createServer((req, res) =>{
     const url = req.url;
