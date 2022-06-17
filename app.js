@@ -4,6 +4,9 @@ const http = require('http');
 const {readFileSync} = require('fs'); 
 
 const homePage = readFileSync('./express/index.html');
+const homeStyles = readFileSync('./express/styles.css');
+const homeLogo = readFileSync('./express/logo.svg');
+const homeLogic = readFileSync('./express/browser-app.js');
 
 const server = http.createServer((req, res) =>{
     const url = req.url;
@@ -19,6 +22,21 @@ const server = http.createServer((req, res) =>{
         console.log('user hit ABOUT PAGE');
         res.writeHead(200,{'content-type' : 'text/html'})
         res.write('<h1>About Page</h1>')
+        res.end()
+    } else if(url ==='/styles.css'){
+ 
+        res.writeHead(200,{'content-type' : 'text/css'})
+        res.write(homeStyles)
+        res.end()
+    } else if(url ==='/logo.svg'){
+ 
+        res.writeHead(200,{'content-type' : 'image/svg+xml'})
+        res.write(homeLogo)
+        res.end()
+    }else if(url ==='/browser-app.js'){
+ 
+        res.writeHead(200,{'content-type' : 'text/javascript'})
+        res.write(homeLogic)
         res.end()
     } else {
         // 404
