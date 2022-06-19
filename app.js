@@ -1,29 +1,42 @@
 const express = require('express');
 const app = express();
+const morgan = require('morgan')
 
- const morgan = require('morgan')
-const logger = require('./logger');
-const authorize = require('./authorize');
+let {products, people} = require('./json/data')
 
-const {products, people} = require('./json/data')
+app.use(morgan('tiny'))
 
-// REQ => MIDDLEWARE => RES
+app.use(express.static('./methods-public'));
 
-// app.use([authorize, logger])
+// PARSE FORM DATA
+app.use(express.urlencoded({extended: false}))
+// PARSE JSON
+app.use(express.json());
 
-app.use(morgan('tiny'));
+app.get('/api/people', (req, res) =>{
+    res.status(200).send({success: true, data: people});
+    console.log(people);
+});
 
-app.get('/', (req, res)=>{
-    res.send('Home')
+app.post('/api/people', (req, res)=>{
+    const {name} = req.body
+    if(!name){
+        return res
+        .status(400)
+        .json({success: false, msg: 'Please Provide Name Value'})
+    }
+    res.status(201).json({success: true, person: name})
 })
 
-app.get('/about', (req, res)=>{
-    res.send("About")
+app.post('/login', (req, res)=>{
+    const {name} = req.body;
+    if(name){
+        return res.status(200).send(`Welcome ${name}`)
+    }
+
+    res.status(401).send('Please Provide Credentials')
 })
 
-app.get('/api/products', (req, res)=>{
-    res.send(products)
-})
 app.listen(5000, ()=>{
     console.log("Fuckit, server is listening on port: 5000 ...");
 })
