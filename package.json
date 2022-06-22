@@ -2,10 +2,10 @@
   "name": "nodeandexpress",
   "version": "1.0.0",
   "description": "This is the place for practicing Nodejs and ExpressJs",
-  "main": "app.js",
+  "main": "./express2/app.js",
   "scripts": {
-    "start": "app.js",
-    "dev": "nodemon app.js"
+    "start": "./express2/app.js",
+    "dev": "nodemon ./express2/app.js"
   },
   "repository": {
     "type": "git",
