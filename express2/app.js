@@ -1,24 +1,24 @@
 const express = require('express');
-const app = express();
 const path = require('path');
-const exphbs = require('express-handlebars');
+const exphbs = require('express-handlebars')
+const { engine } = require('express-handlebars');
+
 const logger = require('./middleware/logger');
 
+const app = express();
 
 // INIT MIDDLEWARE
 app.use(logger);
 
-// HANDLEBARS MIDDLEWARE
-var hbs = exphbs.create({ /* config */ });
-app.engine('handlebars', hbs.engine);
-app.set('view engine', 'handlebars');
 
 // BODY PARSER MIDDLEWARE
-app.use(express.json());
-app.use(express.urlencoded({extended: false}));
+app.engine('.handlebars', exphbs.engine({ extname: '.handlebars', defaultLayout: "main"}));
+app.set('view engine', 'handlebars');
 
 // HOMEPAGE ROUTE
-app.get('/', (req, res) => res.render('./index'));
+app.get('/', function (req, res) {
+    res.render('index');
+});
 
 app.use(express.static(path.join(__dirname, "public")))
 
