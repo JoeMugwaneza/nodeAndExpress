@@ -8,7 +8,7 @@ const logger = require('./middleware/logger');
 const app = express();
 
 // INIT MIDDLEWARE
-app.use(logger);
+// app.use(logger);
 
 
 // BODY PARSER MIDDLEWARE
@@ -17,7 +17,7 @@ app.set('view engine', 'handlebars');
 
 // HOMEPAGE ROUTE
 app.get('/', function (req, res) {
-    res.render('index');
+    res.render('home');
 });
 
 app.use(express.static(path.join(__dirname, "public")))
